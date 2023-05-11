@@ -1,4 +1,4 @@
-package com.flimbis.tvserialcompose.ui.items
+package com.flimbis.tvserialcompose.ui.components
 
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.layout.PaddingValues
