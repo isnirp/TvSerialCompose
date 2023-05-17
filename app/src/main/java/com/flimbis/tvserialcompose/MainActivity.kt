@@ -13,8 +13,11 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.foundation.layout.*
 import com.flimbis.tvserialcompose.ui.components.CardGridView
 import com.flimbis.tvserialcompose.ui.theme.TvSerialComposeTheme
+import com.flimbis.tvserialcompose.ui.vm.ShowsViewModel
 
 class MainActivity : ComponentActivity() {
+    private lateinit var viewModel: ShowsViewModel
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
