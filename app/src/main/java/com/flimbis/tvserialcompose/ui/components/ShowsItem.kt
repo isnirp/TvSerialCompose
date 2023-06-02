@@ -9,12 +9,14 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import coil.compose.rememberAsyncImagePainter
 
 @Composable
-fun CardView(title: String, imageId: Int) {
+fun CardView(title: String, image: String) {
+    val painter = rememberAsyncImagePainter(model = image)
+
     Card(
         modifier = Modifier
             .padding(8.dp)
@@ -26,7 +28,7 @@ fun CardView(title: String, imageId: Int) {
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Image(
-                painter = painterResource(imageId),
+                painter = painter,
                 contentDescription = null,
                 modifier = Modifier
                     .fillMaxWidth()
