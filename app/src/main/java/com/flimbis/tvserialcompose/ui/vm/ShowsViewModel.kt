@@ -8,13 +8,13 @@ import com.flimbis.tvserialcompose.data.repo.ShowsRepository
 import com.flimbis.tvserialcompose.model.Shows
 import kotlinx.coroutines.launch
 
-class ShowsViewModel(private val showsRepository: ShowsRepository): ViewModel() {
-    private val _shows = MutableLiveData<List<Shows>>()
-    val shows: LiveData<List<Shows>> = _shows
+class ShowsViewModel(private val showsRepository: ShowsRepository) : ViewModel() {
+    private val _showsUiState = MutableLiveData<List<Shows>>()
+    val showsUiState: LiveData<List<Shows>> = _showsUiState
 
     fun getShows() {
         viewModelScope.launch {
-            _shows.value = showsRepository.getAll(1)
+            _showsUiState.value = showsRepository.getAll(1)
         }
     }
 }
