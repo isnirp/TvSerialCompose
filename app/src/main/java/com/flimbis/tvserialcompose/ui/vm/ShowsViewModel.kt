@@ -15,7 +15,11 @@ class ShowsViewModel @Inject constructor(private val showsRepository: ShowsRepos
     private val _showsUiState = MutableLiveData<List<Shows>>()
     val showsUiState: LiveData<List<Shows>> = _showsUiState
 
-    fun getShows() {
+    init {
+        getShows()
+    }
+
+    private fun getShows() {
         viewModelScope.launch {
             _showsUiState.value = showsRepository.getAll(1)
         }
