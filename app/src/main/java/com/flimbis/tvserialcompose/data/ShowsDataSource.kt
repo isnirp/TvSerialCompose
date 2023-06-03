@@ -1,6 +1,7 @@
 package com.flimbis.tvserialcompose.data
 
 import com.flimbis.tvserialcompose.model.Shows
+import javax.inject.Inject
 
 interface ShowsDataSource {
     suspend fun getAll(pageNumber: Int): List<Shows>
@@ -8,7 +9,7 @@ interface ShowsDataSource {
     suspend fun get(id: Long): Shows
 }
 
-class ShowsDataSourceImpl(private val apiService: ApiService) : ShowsDataSource {
+class ShowsDataSourceImpl @Inject constructor(private val apiService: ApiService) : ShowsDataSource {
     override suspend fun getAll(pageNumber: Int): List<Shows> {
         return apiService.getAllShows(pageNumber)
     }

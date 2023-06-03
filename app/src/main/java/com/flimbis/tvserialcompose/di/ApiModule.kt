@@ -4,22 +4,26 @@ import com.flimbis.tvserialcompose.data.ApiService
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
+import dagger.hilt.components.SingletonComponent
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import javax.inject.Named
 import javax.inject.Singleton
 
 @Module
-@InstallIn(Singleton::class)
-class ApiModule {
+@InstallIn(SingletonComponent::class)
+object ApiModule {
 
     @Provides
+    @Named("baseUrl")
     fun provideBaseUrl(): String = "http://api.tvmaze.com/"
 
     @Provides
+    @Singleton
     fun provideApiService(retrofit: Retrofit): ApiService = retrofit.create(ApiService::class.java)
 
     @Provides
-    fun provideRetrofit(baseUrl: String): Retrofit {
+    fun provideRetrofit(@Named("baseUrl") baseUrl: String): Retrofit {
         return Retrofit.Builder()
             .baseUrl(baseUrl)
             .addConverterFactory(GsonConverterFactory.create())
