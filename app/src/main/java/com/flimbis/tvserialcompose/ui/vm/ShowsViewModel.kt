@@ -6,9 +6,12 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.flimbis.tvserialcompose.data.repo.ShowsRepository
 import com.flimbis.tvserialcompose.model.Shows
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class ShowsViewModel(private val showsRepository: ShowsRepository) : ViewModel() {
+@HiltViewModel
+class ShowsViewModel @Inject constructor(private val showsRepository: ShowsRepository) : ViewModel() {
     private val _showsUiState = MutableLiveData<List<Shows>>()
     val showsUiState: LiveData<List<Shows>> = _showsUiState
 

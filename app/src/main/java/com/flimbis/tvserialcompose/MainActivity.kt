@@ -14,7 +14,9 @@ import androidx.lifecycle.ViewModelProvider
 import com.flimbis.tvserialcompose.ui.components.ShowsScreen
 import com.flimbis.tvserialcompose.ui.theme.TvSerialComposeTheme
 import com.flimbis.tvserialcompose.ui.vm.ShowsViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     private lateinit var viewModel: ShowsViewModel
 
