@@ -26,7 +26,7 @@ fun ShowsScreen(showsLiveData: LiveData<List<Shows>>) {
 @Composable
 fun CardGridView(cardData: List<Shows>) {
     LazyVerticalGrid(
-        columns = GridCells.Fixed(2),
+        columns = GridCells.Adaptive(128.dp),
         contentPadding = PaddingValues(16.dp)
     ) {
         items(cardData) { data ->

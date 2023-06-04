@@ -16,7 +16,7 @@ object ApiModule {
 
     @Provides
     @Named("baseUrl")
-    fun provideBaseUrl(): String = "http://api.tvmaze.com/"
+    fun provideBaseUrl(): String = "https://api.tvmaze.com/"
 
     @Provides
     @Singleton

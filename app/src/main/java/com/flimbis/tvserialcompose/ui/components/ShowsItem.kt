@@ -15,7 +15,9 @@ import coil.compose.rememberAsyncImagePainter
 
 @Composable
 fun CardView(title: String, image: String) {
-    val painter = rememberAsyncImagePainter(model = image)
+    val painter = rememberAsyncImagePainter(
+        model = image
+    )
 
     Card(
         modifier = Modifier
@@ -23,14 +25,14 @@ fun CardView(title: String, image: String) {
             .fillMaxWidth()
     ) {
         Column(
-            modifier = Modifier.padding(16.dp),
+            modifier = Modifier.padding(8.dp),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Image(
                 painter = painter,
                 contentDescription = null,
                 modifier = Modifier
-                    .fillMaxWidth()
+                    .size(128.dp)
                     .align(Alignment.CenterHorizontally),
                 contentScale = ContentScale.Crop
             )
@@ -39,8 +41,8 @@ fun CardView(title: String, image: String) {
                 text = title,
                 style = MaterialTheme.typography.titleMedium,
                 textAlign = TextAlign.Center,
-                modifier = Modifier.fillMaxWidth()
-            )
+
+                )
         }
     }
 }

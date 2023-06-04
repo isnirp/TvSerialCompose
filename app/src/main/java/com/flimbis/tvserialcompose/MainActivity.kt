@@ -10,6 +10,7 @@ import androidx.compose.material3.Surface
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.flimbis.tvserialcompose.ui.components.ShowsScreen
 import com.flimbis.tvserialcompose.ui.theme.TvSerialComposeTheme
@@ -20,7 +21,7 @@ import dagger.hilt.android.AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val viewModel = ViewModelProvider(this).get(ShowsViewModel::class.java)
+//        val viewModel = ViewModelProvider(this).get(ShowsViewModel::class.java)
 
         setContent {
             TvSerialComposeTheme {
@@ -29,6 +30,8 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
+                    val viewModel: ShowsViewModel = hiltViewModel()
+
                     ShowsScreen(viewModel.showsUiState)
                 }
             }
