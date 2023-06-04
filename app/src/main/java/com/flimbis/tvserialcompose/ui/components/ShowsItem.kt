@@ -2,9 +2,9 @@ package com.flimbis.tvserialcompose.ui.components
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
-import androidx.compose.material.Card
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Text
+import androidx.compose.material3.Card
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -20,8 +20,7 @@ fun CardView(title: String, image: String) {
     Card(
         modifier = Modifier
             .padding(8.dp)
-            .fillMaxWidth(),
-        elevation = 2.dp
+            .fillMaxWidth()
     ) {
         Column(
             modifier = Modifier.padding(16.dp),
@@ -38,7 +37,7 @@ fun CardView(title: String, image: String) {
             Spacer(modifier = Modifier.height(8.dp))
             Text(
                 text = title,
-                style = MaterialTheme.typography.caption,
+                style = MaterialTheme.typography.titleMedium,
                 textAlign = TextAlign.Center,
                 modifier = Modifier.fillMaxWidth()
             )
