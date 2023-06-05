@@ -1,6 +1,7 @@
 package com.flimbis.tvserialcompose.ui.components
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.material3.Card
 import androidx.compose.material3.MaterialTheme
@@ -14,7 +15,11 @@ import androidx.compose.ui.unit.dp
 import coil.compose.rememberAsyncImagePainter
 
 @Composable
-fun CardView(title: String, image: String) {
+fun CardView(
+    title: String,
+    image: String,
+    onItemClick: () -> Unit
+) {
     val painter = rememberAsyncImagePainter(
         model = image
     )
@@ -23,6 +28,7 @@ fun CardView(title: String, image: String) {
         modifier = Modifier
             .padding(8.dp)
             .fillMaxWidth()
+            .clickable { onItemClick }
     ) {
         Column(
             modifier = Modifier.padding(8.dp),

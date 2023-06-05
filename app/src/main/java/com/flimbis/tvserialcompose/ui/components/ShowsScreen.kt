@@ -12,19 +12,23 @@ import androidx.lifecycle.LiveData
 import com.flimbis.tvserialcompose.model.Shows
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.setValue
+import androidx.navigation.NavHostController
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
-fun ShowsScreen(showsLiveData: LiveData<List<Shows>>) {
+fun ShowsScreen(
+    showsLiveData: LiveData<List<Shows>>,
+    onDetailsClick: () -> Unit
+) {
     val shows by showsLiveData.observeAsState()
     shows?.let {
-        CardGridView(cardData = shows!!)
+        CardGridView(cardData = shows!!, onDetailsClick)
     }
 }
 
 @ExperimentalFoundationApi
 @Composable
-fun CardGridView(cardData: List<Shows>) {
+fun CardGridView(cardData: List<Shows>, onItemClick: () -> Unit) {
     LazyVerticalGrid(
         columns = GridCells.Adaptive(128.dp),
         contentPadding = PaddingValues(16.dp)
@@ -32,7 +36,8 @@ fun CardGridView(cardData: List<Shows>) {
         items(cardData) { data ->
             CardView(
                 title = data.name,
-                image = data.image.medium
+                image = data.image.medium,
+                onItemClick
             )
         }
     }
