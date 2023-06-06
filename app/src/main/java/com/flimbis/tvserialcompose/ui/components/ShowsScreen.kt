@@ -18,7 +18,7 @@ import androidx.navigation.NavHostController
 @Composable
 fun ShowsScreen(
     showsLiveData: LiveData<List<Shows>>,
-    onDetailsClick: () -> Unit
+    onDetailsClick: (id:Long) -> Unit
 ) {
     val shows by showsLiveData.observeAsState()
     shows?.let {
@@ -28,7 +28,7 @@ fun ShowsScreen(
 
 @ExperimentalFoundationApi
 @Composable
-fun CardGridView(cardData: List<Shows>, onItemClick: () -> Unit) {
+fun CardGridView(cardData: List<Shows>, onItemClick: (id: Long) -> Unit) {
     LazyVerticalGrid(
         columns = GridCells.Adaptive(128.dp),
         contentPadding = PaddingValues(16.dp)
@@ -37,7 +37,9 @@ fun CardGridView(cardData: List<Shows>, onItemClick: () -> Unit) {
             CardView(
                 title = data.name,
                 image = data.image.medium,
-                onItemClick
+                onItemClick = {
+                    onItemClick(data.id)
+                }
             )
         }
     }

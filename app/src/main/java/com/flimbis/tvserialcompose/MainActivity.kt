@@ -35,9 +35,8 @@ class MainActivity : ComponentActivity() {
                 ) {
 //                    val viewModel: ShowsViewModel by viewModels()
                     val viewModel: ShowsViewModel = hiltViewModel()
-                    val navController = rememberNavController()
 
-                    TvSerialNavigation(navController, viewModel.showsUiState)
+                    TvSerialNavigation(showsLiveData = viewModel.showsUiState)
                 }
             }
         }

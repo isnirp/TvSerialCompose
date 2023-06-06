@@ -1,20 +1,22 @@
 package com.flimbis.tvserialcompose.ui
 
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
 import androidx.lifecycle.LiveData
 import androidx.navigation.NavHostController
+import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
+import androidx.navigation.navArgument
 import com.flimbis.tvserialcompose.model.Shows
-import com.flimbis.tvserialcompose.ui.components.ShowsDetailScreen
+import com.flimbis.tvserialcompose.ui.components.ShowDetailScreen
 import com.flimbis.tvserialcompose.ui.components.ShowsScreen
 
 @Composable
 fun TvSerialNavigation(
-    navController: NavHostController,
-    showsLiveData: LiveData<List<Shows>>,
-    startDestination: String = "home"
+    navController: NavHostController = rememberNavController(),
+    startDestination: String = "home",
+    showsLiveData: LiveData<List<Shows>>
 ) {
     NavHost(
         navController = navController,
@@ -23,12 +25,17 @@ fun TvSerialNavigation(
         composable("home") {
             ShowsScreen(
                 showsLiveData = showsLiveData,
-                { navController.navigate("showDetails") }
+                onDetailsClick = { id ->
+                    navController.navigate("showDetails/$id")
+                }
             )
         }
 
-        composable("showDetails") {
-            ShowsDetailScreen()
+        composable(
+            route = "showDetails/{id}",
+            arguments = listOf(navArgument("id") { type = NavType.LongType })
+        ) { navBackStackEntry ->
+            ShowDetailScreen(navBackStackEntry.arguments!!.getLong("id"))
         }
     }
 }

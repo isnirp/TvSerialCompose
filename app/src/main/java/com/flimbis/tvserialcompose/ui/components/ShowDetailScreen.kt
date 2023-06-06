@@ -4,6 +4,6 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 
 @Composable
-fun ShowsDetailScreen() {
-    Text(text = "Hello Navigation")
+fun ShowDetailScreen(id: Long) {
+    Text(text = "Hello Navigation $id")
 }
