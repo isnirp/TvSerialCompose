@@ -3,7 +3,6 @@ package com.flimbis.tvserialcompose
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.activity.viewModels
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.layout.*
 import androidx.compose.material3.MaterialTheme
@@ -12,10 +11,7 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.hilt.navigation.compose.hiltViewModel
-import androidx.navigation.NavHostController
-import androidx.navigation.compose.rememberNavController
 import com.flimbis.tvserialcompose.ui.TvSerialNavigation
-import com.flimbis.tvserialcompose.ui.components.ShowsScreen
 import com.flimbis.tvserialcompose.ui.theme.TvSerialComposeTheme
 import com.flimbis.tvserialcompose.ui.vm.ShowsViewModel
 import dagger.hilt.android.AndroidEntryPoint

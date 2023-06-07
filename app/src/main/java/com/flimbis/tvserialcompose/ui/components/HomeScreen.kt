@@ -11,18 +11,16 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.LiveData
 import com.flimbis.tvserialcompose.model.Shows
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.setValue
-import androidx.navigation.NavHostController
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
-fun ShowsScreen(
+fun HomeScreen(
     showsLiveData: LiveData<List<Shows>>,
-    onDetailsClick: (id:Long) -> Unit
+    onNavToShow: (id:Long) -> Unit
 ) {
     val shows by showsLiveData.observeAsState()
     shows?.let {
-        CardGridView(cardData = shows!!, onDetailsClick)
+        CardGridView(cardData = shows!!, onItemClick = onNavToShow)
     }
 }
 
