@@ -1,5 +1,6 @@
 package com.flimbis.tvserialcompose.ui
 
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.runtime.Composable
 import androidx.lifecycle.LiveData
 import androidx.navigation.NavHostController
@@ -16,7 +17,8 @@ import com.flimbis.tvserialcompose.ui.components.ShowScreen
 fun TvSerialNavigation(
     navController: NavHostController/* central api for nav component */ = rememberNavController(),
     startDestination: String = "home",
-    showsLiveData: LiveData<List<Shows>>
+    showsLiveData: LiveData<List<Shows>>,
+    scaffoldPaddingValues: PaddingValues
 ) {
     NavHost(
         navController = navController,
@@ -27,7 +29,8 @@ fun TvSerialNavigation(
                 showsLiveData = showsLiveData,
                 onNavToShow = { id ->
                     navController.navigate("show/$id")
-                }
+                },
+                paddingValues = scaffoldPaddingValues
             )
         }
 
