@@ -15,7 +15,7 @@ import com.flimbis.tvserialcompose.ui.components.ShowScreen
 
 @Composable
 fun TvSerialNavigation(
-    navController: NavHostController/* central api for nav component */ = rememberNavController(),
+    navController: NavHostController/* central api for nav component */,
     startDestination: String = "home",
     showsLiveData: LiveData<List<Shows>>,
     scaffoldPaddingValues: PaddingValues
@@ -38,7 +38,7 @@ fun TvSerialNavigation(
             route = "show/{id}",
             arguments = listOf(navArgument("id") { type = NavType.LongType })
         ) { navBackStackEntry /* extract available args */ ->
-            ShowScreen(navBackStackEntry.arguments!!.getLong("id"))
+            ShowScreen(navBackStackEntry.arguments!!.getLong("id"), paddingValues = scaffoldPaddingValues)
         }
     }
 }

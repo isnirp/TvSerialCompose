@@ -13,6 +13,9 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.currentBackStackEntryAsState
+import androidx.navigation.compose.rememberNavController
 import com.flimbis.tvserialcompose.ui.TvSerialNavigation
 import com.flimbis.tvserialcompose.ui.components.TvAppBar
 import com.flimbis.tvserialcompose.ui.theme.TvSerialComposeTheme
@@ -41,12 +44,23 @@ class MainActivity : ComponentActivity() {
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun TvApp() {
-    Scaffold(topBar = { TvAppBar() }) {
-        //                    val viewModel: ShowsViewModel by viewModels()
+fun TvApp(navController: NavHostController = rememberNavController()) {
+    // Get current back stack entry
+    val backStackEntry by navController.currentBackStackEntryAsState()
+    // Get name of current screen
+    val currentScreen = backStackEntry?.destination?.route ?: "TvSerial"
+
+    Scaffold(topBar = {
+        TvAppBar(
+            currentScreen = currentScreen,
+            canNavBack = navController.previousBackStackEntry != null,
+            navigateUp = { navController.navigateUp() }
+        )
+    }) {
         val viewModel: ShowsViewModel = hiltViewModel()
 
         TvSerialNavigation(
+            navController = navController,
             showsLiveData = viewModel.showsUiState,
             scaffoldPaddingValues = it
         )
