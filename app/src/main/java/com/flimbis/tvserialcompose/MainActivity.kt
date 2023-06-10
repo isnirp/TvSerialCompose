@@ -48,7 +48,7 @@ fun TvApp(navController: NavHostController = rememberNavController()) {
     // Get current back stack entry
     val backStackEntry by navController.currentBackStackEntryAsState()
     // Get name of current screen
-    val currentScreen = backStackEntry?.destination?.route ?: "TvSerial"
+    val currentScreen = getAppBarTitle(backStackEntry?.destination?.route ?: "home")
 
     Scaffold(topBar = {
         TvAppBar(
@@ -64,6 +64,13 @@ fun TvApp(navController: NavHostController = rememberNavController()) {
             showsLiveData = viewModel.showsUiState,
             scaffoldPaddingValues = it
         )
+    }
+}
+
+fun getAppBarTitle(route: String): String {
+    return when (route) {
+        "home" -> "TvSerial"
+        else -> "TvShow"
     }
 }
 
