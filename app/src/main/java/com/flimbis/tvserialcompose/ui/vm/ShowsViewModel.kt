@@ -15,6 +15,9 @@ class ShowsViewModel @Inject constructor(private val showsRepository: ShowsRepos
     private val _showsUiState = MutableLiveData<List<Shows>>()
     val showsUiState: LiveData<List<Shows>> = _showsUiState
 
+    private val _shows = MutableLiveData<Shows>()
+    val show = _shows
+
     init {
         getShows()
     }
@@ -22,6 +25,12 @@ class ShowsViewModel @Inject constructor(private val showsRepository: ShowsRepos
     private fun getShows() {
         viewModelScope.launch {
             _showsUiState.value = showsRepository.getAll(1)
+        }
+    }
+
+    fun getShow(id: Long) {
+        viewModelScope.launch {
+            _shows.value = showsRepository.get(id)
         }
     }
 }

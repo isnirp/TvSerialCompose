@@ -38,7 +38,9 @@ fun TvSerialNavigation(
             route = "show/{id}",
             arguments = listOf(navArgument("id") { type = NavType.LongType })
         ) { navBackStackEntry /* extract available args */ ->
-            ShowScreen(navBackStackEntry.arguments!!.getLong("id"), paddingValues = scaffoldPaddingValues)
+            ShowScreen(navBackStackEntry.arguments!!.getLong("id"),
+                paddingValues = scaffoldPaddingValues,
+                onShowDetails = {})
         }
     }
 }
