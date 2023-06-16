@@ -22,29 +22,29 @@ interface ApiService {
     * endpoint http://api.tvmaze.com/shows/1
     * */
     @GET("shows/{id}")
-    fun getShowById(@Path("id") id: Long): Shows
+    suspend fun getShowById(@Path("id") id: Long): Shows
 
     /*
     * endpoint http://api.tvmaze.com/shows/1/episodes
     * */
     @GET("shows/{id}/episodes")
-    fun getAllEpisodesOfShow(@Path("id") id: Long): List<Episodes>
+    suspend fun getAllEpisodesOfShow(@Path("id") id: Long): List<Episodes>
 
     /*
     * endpoint http://api.tvmaze.com/shows/1/episodebynumber?season=1&number=1
     * */
     @GET("shows/{id}/episodebynumber")
-    fun getEpisodeOfShow(@Path("id") id: Long, @Query("season") seasonNumber: String, @Query("number") episodeNumber: String): Episodes
+    suspend fun getEpisodeOfShow(@Path("id") id: Long, @Query("season") seasonNumber: String, @Query("number") episodeNumber: String): Episodes
 
     /*
     * endpoint http://api.tvmaze.com/shows/1/seasons
     * */
     @GET("shows/{id}/seasons")
-    fun getAllSeasonsOfShow(@Path("id") id: Long): List<Season>
+    suspend fun getAllSeasonsOfShow(@Path("id") id: Long): List<Season>
 
     /*
     * endpoint http://api.tvmaze.com/seasons/1/episodes
     * */
     @GET("seasons/{id}/episodes")
-    fun getAllEpisodesOfSeasons(@Path("id") id: Long): List<Episodes>
+    suspend fun getAllEpisodesOfSeasons(@Path("id") id: Long): List<Episodes>
 }
