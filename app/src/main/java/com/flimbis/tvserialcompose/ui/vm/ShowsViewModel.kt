@@ -15,9 +15,6 @@ class ShowsViewModel @Inject constructor(private val showsRepository: ShowsRepos
     private val _showsUiState = MutableLiveData<List<Shows>>()
     val showsUiState: LiveData<List<Shows>> = _showsUiState
 
-    private val _shows = MutableLiveData<Shows>()
-    val show = _shows
-
     init {
         getShows()
     }
@@ -27,12 +24,6 @@ class ShowsViewModel @Inject constructor(private val showsRepository: ShowsRepos
             _showsUiState.value = showsRepository.getAll(1)
         }
     }
-
-    fun getShow(id: Long) {
-        viewModelScope.launch {
-            _shows.value = showsRepository.get(id)
-        }
-    }
 }
 
 /*
@@ -40,6 +31,6 @@ class ShowsViewModel @Inject constructor(private val showsRepository: ShowsRepos
 * - persists UI state
 * - provides access to business logic
 *
-* ViewModelStoreOwner passed to a VM when instantiating it allows the VM to bind to the lifecyle of the VMSO
+* ViewModelStoreOwner(activity, fragment) passed to a VM when instantiating it allows the VM to bind to the lifecyle of the VMSO
 * NB Composable is not a VMSO
 * */
