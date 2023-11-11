@@ -8,31 +8,39 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
+import com.flimbis.tvserialcompose.ui.vm.ShowDetailsViewModel
+import androidx.compose.runtime.getValue
 
 @Composable
 fun ShowScreen(
+    showDetailsViewModel: ShowDetailsViewModel,
     id: Long,
-    paddingValues: PaddingValues,
-    onShowDetails: () -> Unit
+    paddingValues: PaddingValues
 ) {
-    Text(
-        text = "Hello Navigation $id",
-        modifier = Modifier.padding(paddingValues.calculateTopPadding())
-    )
-    Box(modifier = Modifier.fillMaxSize()) {
+    val show by showDetailsViewModel.show.observeAsState()
+    /* Text(
+         text = "Hello Navigation ${show?.id}",
+         modifier = Modifier.padding(paddingValues.calculateTopPadding())
+     )*/
+    Box(
+        modifier = Modifier
+            .padding(paddingValues.calculateTopPadding())
+            .fillMaxSize()
+    ) {
         AsyncImage(
             modifier = Modifier.fillMaxSize(),
-            model = image,
+            model = show?.image?.original,
             contentDescription = null,
             contentScale = ContentScale.Crop,
         )
         Column(modifier = Modifier.padding(32.dp)) {
             Text(
-                text = "title",
+                text = show!!.name,
                 style = MaterialTheme.typography.titleMedium
             )
             Text(text = "description")

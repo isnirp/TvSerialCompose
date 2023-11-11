@@ -78,7 +78,7 @@ fun getAppBarTitle(route: String): String {
 @Preview(showBackground = true)
 @Composable
 fun DefaultPreview() {
-    TvSerialComposeTheme {
+    TvSerialComposeTheme/*Material design created for the project*/ {
         Surface(
             modifier = Modifier.fillMaxSize(),
             color = MaterialTheme.colorScheme.background
@@ -86,3 +86,12 @@ fun DefaultPreview() {
         }
     }
 }
+
+
+// Modifiers
+// - allow you to change the composable's size, layout, appearance or add high-level interactions, such as making an element clickable.
+// Material Design
+// - Material Design is built around three pillars: Color, Typography, and Shape
+// Scaffold
+// - Scaffold helps assemble app's structure
+// - Scaffold can contain; appbar, floatingActionButton

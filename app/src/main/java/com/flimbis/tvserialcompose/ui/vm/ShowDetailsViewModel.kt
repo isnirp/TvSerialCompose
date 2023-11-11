@@ -20,7 +20,7 @@ class ShowDetailsViewModel @Inject constructor(
     private val showId: Long = checkNotNull(savedStateHandle["id"])
 
     private val _show = MutableLiveData<Shows>()
-    val show: LiveData<Shows> = _show
+    val show/*backing field*/: LiveData<Shows> = _show
 
     init {
         getShow(showId)
@@ -32,3 +32,5 @@ class ShowDetailsViewModel @Inject constructor(
         }
     }
 }
+
+// LiveData is an observable data holder class that is lifecycle-aware
