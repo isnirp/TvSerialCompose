@@ -15,10 +15,11 @@ import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import com.flimbis.tvserialcompose.ui.vm.ShowDetailsViewModel
 import androidx.compose.runtime.getValue
+import androidx.hilt.navigation.compose.hiltViewModel
 
 @Composable
 fun ShowScreen(
-    showDetailsViewModel: ShowDetailsViewModel,
+    showDetailsViewModel: ShowDetailsViewModel = hiltViewModel(),
     id: Long?,
     paddingValues: PaddingValues
 ) {
@@ -43,7 +44,8 @@ fun ShowScreen(
                 text = show?.name ?: "no name",
                 style = MaterialTheme.typography.titleMedium
             )
-            Text(text = show?.summary ?: "description")
+//            Text(text = show?.summary ?: "description")
+            Text(text = "description")
 
         }
     }

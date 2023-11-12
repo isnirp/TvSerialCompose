@@ -23,16 +23,18 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.LayoutDirection
+import androidx.hilt.navigation.compose.hiltViewModel
 import coil.compose.AsyncImage
+import com.flimbis.tvserialcompose.ui.vm.ShowsViewModel
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun HomeScreen(
-    showsLiveData: LiveData<List<Shows>>,
+    showsViewModel: ShowsViewModel = hiltViewModel(),
     onNavToShow: (id: Long) -> Unit,
     paddingValues: PaddingValues
 ) {
-    val shows by showsLiveData.observeAsState()
+    val shows by showsViewModel.showsUiState.observeAsState()
     shows?.let {
         CardGridView(
             cardData = shows!!,

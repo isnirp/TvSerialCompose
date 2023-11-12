@@ -2,23 +2,17 @@ package com.flimbis.tvserialcompose.ui
 
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.runtime.Composable
-import androidx.hilt.navigation.compose.hiltViewModel
-import androidx.lifecycle.LiveData
 import androidx.navigation.NavHostController
-import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
-import com.flimbis.tvserialcompose.model.Shows
 import com.flimbis.tvserialcompose.ui.components.HomeScreen
 import com.flimbis.tvserialcompose.ui.components.ShowScreen
-import com.flimbis.tvserialcompose.ui.vm.ShowDetailsViewModel
 
 @Composable
 fun TvSerialNavigation(
     navController: NavHostController/* central api for nav component */,
     startDestination: String = "home",
-    showsLiveData: LiveData<List<Shows>>,
     scaffoldPaddingValues: PaddingValues
 ) {
     NavHost(
@@ -27,7 +21,6 @@ fun TvSerialNavigation(
     ) {
         composable("home") {
             HomeScreen(
-                showsLiveData = showsLiveData,
                 onNavToShow = { id ->
                     navController.navigate("show?id=$id")
                 },
@@ -37,10 +30,9 @@ fun TvSerialNavigation(
 
         composable(
             route = "show?id={id}",
-            arguments = listOf(navArgument("id") { defaultValue = 1L})
+            arguments = listOf(navArgument("id") { defaultValue = 1L })
         ) { navBackStackEntry /* extract available args */ ->
             ShowScreen(
-                showDetailsViewModel = hiltViewModel(),
                 id = navBackStackEntry.arguments?.getLong("id"),
                 paddingValues = scaffoldPaddingValues
             )

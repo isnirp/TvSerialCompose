@@ -12,14 +12,12 @@ import androidx.compose.material3.Surface
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.flimbis.tvserialcompose.ui.TvSerialNavigation
 import com.flimbis.tvserialcompose.ui.components.TvAppBar
 import com.flimbis.tvserialcompose.ui.theme.TvSerialComposeTheme
-import com.flimbis.tvserialcompose.ui.vm.ShowsViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -57,11 +55,9 @@ fun TvApp(navController: NavHostController = rememberNavController()) {
             navigateUp = { navController.navigateUp() }
         )
     }) {
-        val viewModel: ShowsViewModel = hiltViewModel()
 
         TvSerialNavigation(
             navController = navController,
-            showsLiveData = viewModel.showsUiState,
             scaffoldPaddingValues = it
         )
     }

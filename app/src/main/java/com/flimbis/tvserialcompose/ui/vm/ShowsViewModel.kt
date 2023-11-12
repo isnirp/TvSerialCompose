@@ -11,7 +11,8 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class ShowsViewModel @Inject constructor(private val showsRepository: ShowsRepository) : ViewModel() {
+class ShowsViewModel @Inject constructor(private val showsRepository: ShowsRepository) :
+    ViewModel() {
     private val _showsUiState = MutableLiveData<List<Shows>>()
     val showsUiState: LiveData<List<Shows>> = _showsUiState
 
