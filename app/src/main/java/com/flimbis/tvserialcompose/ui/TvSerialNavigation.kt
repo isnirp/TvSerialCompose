@@ -12,6 +12,7 @@ import androidx.navigation.navArgument
 import com.flimbis.tvserialcompose.model.Shows
 import com.flimbis.tvserialcompose.ui.components.HomeScreen
 import com.flimbis.tvserialcompose.ui.components.ShowScreen
+import com.flimbis.tvserialcompose.ui.vm.ShowDetailsViewModel
 
 @Composable
 fun TvSerialNavigation(
@@ -28,19 +29,19 @@ fun TvSerialNavigation(
             HomeScreen(
                 showsLiveData = showsLiveData,
                 onNavToShow = { id ->
-                    navController.navigate("show/$id")
+                    navController.navigate("show?id=$id")
                 },
                 paddingValues = scaffoldPaddingValues
             )
         }
 
         composable(
-            route = "show/{id}",
-            arguments = listOf(navArgument("id") { type = NavType.LongType })
+            route = "show?id={id}",
+            arguments = listOf(navArgument("id") { defaultValue = 1L})
         ) { navBackStackEntry /* extract available args */ ->
             ShowScreen(
                 showDetailsViewModel = hiltViewModel(),
-                id = navBackStackEntry.arguments!!.getLong("id"),
+                id = navBackStackEntry.arguments?.getLong("id"),
                 paddingValues = scaffoldPaddingValues
             )
         }

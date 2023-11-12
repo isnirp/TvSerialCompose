@@ -19,7 +19,7 @@ import androidx.compose.runtime.getValue
 @Composable
 fun ShowScreen(
     showDetailsViewModel: ShowDetailsViewModel,
-    id: Long,
+    id: Long?,
     paddingValues: PaddingValues
 ) {
     val show by showDetailsViewModel.show.observeAsState()
@@ -40,10 +40,10 @@ fun ShowScreen(
         )
         Column(modifier = Modifier.padding(32.dp)) {
             Text(
-                text = show!!.name,
+                text = show?.name ?: "no name",
                 style = MaterialTheme.typography.titleMedium
             )
-            Text(text = "description")
+            Text(text = show?.summary ?: "description")
 
         }
     }
